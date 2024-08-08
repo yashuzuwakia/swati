@@ -62,7 +62,7 @@ export const About = () => {
           <h2>Get In Touch</h2>
           <h3>If You really looking for an awsome singer or any colllab.</h3>
           <p className="contact-message">Let's talk about how awsome this is. We can share our ideas on this.</p>
-          <NavLink to="/contact" classNameName="contact">CONTACT ME</NavLink>
+          <NavLink to="/contact" className="contact">CONTACT ME</NavLink>
         </div>
       </div>
     </div>
