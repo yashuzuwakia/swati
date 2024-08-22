@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 
 export const Services = () => {
+
+  const [joke, setJoke] = useState([]);
 
     /* Old way to make an XML Request
   const req = new XMLHttpRequest();
@@ -64,6 +67,7 @@ export const Services = () => {
 
     //Let's make it more clear with Async Await
 
+    /*
     const loadStarWarsPeople = async () => {
       try {
         const res = await fetch("https://swapi.dev/api/people/1/");
@@ -79,139 +83,56 @@ export const Services = () => {
     }
 
     loadStarWarsPeople();
+    */
+
+    //Making it more easier with Axios
+
+    /*
+    axios.get("https://swapi.dev/api/people/2/")
+    .then(data=>console.log(data))
+    */
+
+    const starsWarData = async (id) => {
+      try {
+        const res = await axios.get(`https://swapi.dev/api/people/${id}/`);
+        console.log(res.data);
+      } catch (error) {
+        console.log(error);
+      } 
+    }
+
+    //starsWarData(1);
+
+    const getDadjokes = async () => {
+      const config = {headers:{ Accept: "Application/json"}}
+      const res = await axios.get("https://icanhazdadjoke.com",config)
+      setJoke([...joke,res.data.joke]);
+    }
+
+    const cleanJokes = () => {
+      setJoke([]);
+    }
 
   return (
     <div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ut modi suscipit, voluptas praesentium architecto odit quasi, exercitationem repellendus ea similique incidunt. 
-        Exercitationem voluptate, adipisci inventore ullam optio rerum minus neque earum similique quas iste. 
-        Voluptate cum eaque excepturi veritatis necessitatibus eveniet iure fugit omnis. 
-        Incidunt neque reiciendis quisquam nulla error quidem, dolore nostrum earum dolorem excepturi rem tempore eos repellat, 
-        consectetur ratione quos atque sunt ad qui corrupti sed? Rem nesciunt totam impedit, aliquam autem iste perspiciatis, 
-        maxime quaerat mollitia quis, asperiores quidem. Deserunt dignissimos facilis vitae possimus! 
-        Nisi ut quidem reprehenderit quisquam dolores aliquid hic laboriosam, sunt architecto cum!
+      <div className='joke'>
+        Click here to get a new Joke!!!
+        <button onClick={getDadjokes}>
+          Click Me
+        </button>
+        <button onClick={cleanJokes}>
+          Clean
+        </button>
       </div>
       <br/>
       <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ut modi suscipit, voluptas praesentium architecto odit quasi, exercitationem repellendus ea similique incidunt. 
-        Exercitationem voluptate, adipisci inventore ullam optio rerum minus neque earum similique quas iste. 
-        Voluptate cum eaque excepturi veritatis necessitatibus eveniet iure fugit omnis. 
-        Incidunt neque reiciendis quisquam nulla error quidem, dolore nostrum earum dolorem excepturi rem tempore eos repellat, 
-        consectetur ratione quos atque sunt ad qui corrupti sed? Rem nesciunt totam impedit, aliquam autem iste perspiciatis, 
-        maxime quaerat mollitia quis, asperiores quidem. Deserunt dignissimos facilis vitae possimus! 
-        Nisi ut quidem reprehenderit quisquam dolores aliquid hic laboriosam, sunt architecto cum!
+        {joke.map(j=>{return (<li key = {j}>
+          {j}
+        </li>)
+        })}
       </div>
       <br/>
       <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ut modi suscipit, voluptas praesentium architecto odit quasi, exercitationem repellendus ea similique incidunt. 
-        Exercitationem voluptate, adipisci inventore ullam optio rerum minus neque earum similique quas iste. 
-        Voluptate cum eaque excepturi veritatis necessitatibus eveniet iure fugit omnis. 
-        Incidunt neque reiciendis quisquam nulla error quidem, dolore nostrum earum dolorem excepturi rem tempore eos repellat, 
-        consectetur ratione quos atque sunt ad qui corrupti sed? Rem nesciunt totam impedit, aliquam autem iste perspiciatis, 
-        maxime quaerat mollitia quis, asperiores quidem. Deserunt dignissimos facilis vitae possimus! 
-        Nisi ut quidem reprehenderit quisquam dolores aliquid hic laboriosam, sunt architecto cum!
-      </div>
-      <br/>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ut modi suscipit, voluptas praesentium architecto odit quasi, exercitationem repellendus ea similique incidunt. 
-        Exercitationem voluptate, adipisci inventore ullam optio rerum minus neque earum similique quas iste. 
-        Voluptate cum eaque excepturi veritatis necessitatibus eveniet iure fugit omnis. 
-        Incidunt neque reiciendis quisquam nulla error quidem, dolore nostrum earum dolorem excepturi rem tempore eos repellat, 
-        consectetur ratione quos atque sunt ad qui corrupti sed? Rem nesciunt totam impedit, aliquam autem iste perspiciatis, 
-        maxime quaerat mollitia quis, asperiores quidem. Deserunt dignissimos facilis vitae possimus! 
-        Nisi ut quidem reprehenderit quisquam dolores aliquid hic laboriosam, sunt architecto cum!
-      </div>
-      <br/>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ut modi suscipit, voluptas praesentium architecto odit quasi, exercitationem repellendus ea similique incidunt. 
-        Exercitationem voluptate, adipisci inventore ullam optio rerum minus neque earum similique quas iste. 
-        Voluptate cum eaque excepturi veritatis necessitatibus eveniet iure fugit omnis. 
-        Incidunt neque reiciendis quisquam nulla error quidem, dolore nostrum earum dolorem excepturi rem tempore eos repellat, 
-        consectetur ratione quos atque sunt ad qui corrupti sed? Rem nesciunt totam impedit, aliquam autem iste perspiciatis, 
-        maxime quaerat mollitia quis, asperiores quidem. Deserunt dignissimos facilis vitae possimus! 
-        Nisi ut quidem reprehenderit quisquam dolores aliquid hic laboriosam, sunt architecto cum!
-      </div>
-      <br/>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ut modi suscipit, voluptas praesentium architecto odit quasi, exercitationem repellendus ea similique incidunt. 
-        Exercitationem voluptate, adipisci inventore ullam optio rerum minus neque earum similique quas iste. 
-        Voluptate cum eaque excepturi veritatis necessitatibus eveniet iure fugit omnis. 
-        Incidunt neque reiciendis quisquam nulla error quidem, dolore nostrum earum dolorem excepturi rem tempore eos repellat, 
-        consectetur ratione quos atque sunt ad qui corrupti sed? Rem nesciunt totam impedit, aliquam autem iste perspiciatis, 
-        maxime quaerat mollitia quis, asperiores quidem. Deserunt dignissimos facilis vitae possimus! 
-        Nisi ut quidem reprehenderit quisquam dolores aliquid hic laboriosam, sunt architecto cum!
-      </div>
-      <br/>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ut modi suscipit, voluptas praesentium architecto odit quasi, exercitationem repellendus ea similique incidunt. 
-        Exercitationem voluptate, adipisci inventore ullam optio rerum minus neque earum similique quas iste. 
-        Voluptate cum eaque excepturi veritatis necessitatibus eveniet iure fugit omnis. 
-        Incidunt neque reiciendis quisquam nulla error quidem, dolore nostrum earum dolorem excepturi rem tempore eos repellat, 
-        consectetur ratione quos atque sunt ad qui corrupti sed? Rem nesciunt totam impedit, aliquam autem iste perspiciatis, 
-        maxime quaerat mollitia quis, asperiores quidem. Deserunt dignissimos facilis vitae possimus! 
-        Nisi ut quidem reprehenderit quisquam dolores aliquid hic laboriosam, sunt architecto cum!
-      </div>
-      <br/>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ut modi suscipit, voluptas praesentium architecto odit quasi, exercitationem repellendus ea similique incidunt. 
-        Exercitationem voluptate, adipisci inventore ullam optio rerum minus neque earum similique quas iste. 
-        Voluptate cum eaque excepturi veritatis necessitatibus eveniet iure fugit omnis. 
-        Incidunt neque reiciendis quisquam nulla error quidem, dolore nostrum earum dolorem excepturi rem tempore eos repellat, 
-        consectetur ratione quos atque sunt ad qui corrupti sed? Rem nesciunt totam impedit, aliquam autem iste perspiciatis, 
-        maxime quaerat mollitia quis, asperiores quidem. Deserunt dignissimos facilis vitae possimus! 
-        Nisi ut quidem reprehenderit quisquam dolores aliquid hic laboriosam, sunt architecto cum!
-      </div>
-      <br/>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ut modi suscipit, voluptas praesentium architecto odit quasi, exercitationem repellendus ea similique incidunt. 
-        Exercitationem voluptate, adipisci inventore ullam optio rerum minus neque earum similique quas iste. 
-        Voluptate cum eaque excepturi veritatis necessitatibus eveniet iure fugit omnis. 
-        Incidunt neque reiciendis quisquam nulla error quidem, dolore nostrum earum dolorem excepturi rem tempore eos repellat, 
-        consectetur ratione quos atque sunt ad qui corrupti sed? Rem nesciunt totam impedit, aliquam autem iste perspiciatis, 
-        maxime quaerat mollitia quis, asperiores quidem. Deserunt dignissimos facilis vitae possimus! 
-        Nisi ut quidem reprehenderit quisquam dolores aliquid hic laboriosam, sunt architecto cum!
-      </div>
-      <br/>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ut modi suscipit, voluptas praesentium architecto odit quasi, exercitationem repellendus ea similique incidunt. 
-        Exercitationem voluptate, adipisci inventore ullam optio rerum minus neque earum similique quas iste. 
-        Voluptate cum eaque excepturi veritatis necessitatibus eveniet iure fugit omnis. 
-        Incidunt neque reiciendis quisquam nulla error quidem, dolore nostrum earum dolorem excepturi rem tempore eos repellat, 
-        consectetur ratione quos atque sunt ad qui corrupti sed? Rem nesciunt totam impedit, aliquam autem iste perspiciatis, 
-        maxime quaerat mollitia quis, asperiores quidem. Deserunt dignissimos facilis vitae possimus! 
-        Nisi ut quidem reprehenderit quisquam dolores aliquid hic laboriosam, sunt architecto cum!
-      </div>
-      <br/>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ut modi suscipit, voluptas praesentium architecto odit quasi, exercitationem repellendus ea similique incidunt. 
-        Exercitationem voluptate, adipisci inventore ullam optio rerum minus neque earum similique quas iste. 
-        Voluptate cum eaque excepturi veritatis necessitatibus eveniet iure fugit omnis. 
-        Incidunt neque reiciendis quisquam nulla error quidem, dolore nostrum earum dolorem excepturi rem tempore eos repellat, 
-        consectetur ratione quos atque sunt ad qui corrupti sed? Rem nesciunt totam impedit, aliquam autem iste perspiciatis, 
-        maxime quaerat mollitia quis, asperiores quidem. Deserunt dignissimos facilis vitae possimus! 
-        Nisi ut quidem reprehenderit quisquam dolores aliquid hic laboriosam, sunt architecto cum!
-      </div>
-      <br/>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Ut modi suscipit, voluptas praesentium architecto odit quasi, exercitationem repellendus ea similique incidunt. 
-        Exercitationem voluptate, adipisci inventore ullam optio rerum minus neque earum similique quas iste. 
-        Voluptate cum eaque excepturi veritatis necessitatibus eveniet iure fugit omnis. 
-        Incidunt neque reiciendis quisquam nulla error quidem, dolore nostrum earum dolorem excepturi rem tempore eos repellat, 
-        consectetur ratione quos atque sunt ad qui corrupti sed? Rem nesciunt totam impedit, aliquam autem iste perspiciatis, 
-        maxime quaerat mollitia quis, asperiores quidem. Deserunt dignissimos facilis vitae possimus! 
-        Nisi ut quidem reprehenderit quisquam dolores aliquid hic laboriosam, sunt architecto cum!
       </div>
       <br/>
     </div>

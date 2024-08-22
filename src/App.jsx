@@ -2,6 +2,7 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar'
 import { Home, About, Contact, Services } from './components/pages'
+import React from 'react'
 
 function App() {
   return (
