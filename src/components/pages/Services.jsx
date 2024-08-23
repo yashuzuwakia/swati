@@ -3,7 +3,8 @@ import axios from 'axios'
 
 export const Services = () => {
 
-  const [joke, setJoke] = useState([]);
+  const [movieName, setMovieName] = useState("");
+  //const [joke, setJoke] = useState([]);
 
     /* Old way to make an XML Request
   const req = new XMLHttpRequest();
@@ -92,47 +93,25 @@ export const Services = () => {
     .then(data=>console.log(data))
     */
 
-    const starsWarData = async (id) => {
-      try {
-        const res = await axios.get(`https://swapi.dev/api/people/${id}/`);
-        console.log(res.data);
-      } catch (error) {
+    const findTvShow = async (e) => {
+      try{
+        e.preventDefault();
+        //const config = {headers:{ Accept: "Application/json"}}
+        const res = await axios.get(`https://api.tvmaze.com/singlesearch/shows?q=${movieName}`)
+        console.log(res.data.image.medium);
+      } catch(error){
         console.log(error);
-      } 
-    }
-
-    //starsWarData(1);
-
-    const getDadjokes = async () => {
-      const config = {headers:{ Accept: "Application/json"}}
-      const res = await axios.get("https://icanhazdadjoke.com",config)
-      setJoke([...joke,res.data.joke]);
-    }
-
-    const cleanJokes = () => {
-      setJoke([]);
+      }
     }
 
   return (
     <div>
       <div className='joke'>
-        Click here to get a new Joke!!!
-        <button onClick={getDadjokes}>
-          Click Me
-        </button>
-        <button onClick={cleanJokes}>
-          Clean
-        </button>
-      </div>
-      <br/>
-      <div>
-        {joke.map(j=>{return (<li key = {j}>
-          {j}
-        </li>)
-        })}
-      </div>
-      <br/>
-      <div>
+        <h1>TV Show Search</h1>
+        <form>
+        <input type='text' placeholder='TV Show title' name='query' onChange={(event)=>{setMovieName(event.target.value)}}/>
+        <button onClick={(e)=>{findTvShow(e)}}>Search</button>
+        </form>
       </div>
       <br/>
     </div>
